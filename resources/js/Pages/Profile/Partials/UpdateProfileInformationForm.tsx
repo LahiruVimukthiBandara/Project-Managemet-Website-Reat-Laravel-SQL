@@ -5,6 +5,7 @@ import TextInput from "@/Components/Core/TextInput";
 import { Transition } from "@headlessui/react";
 import { Link, useForm, usePage } from "@inertiajs/react";
 import { FormEventHandler } from "react";
+import { toast } from "react-toastify";
 
 export default function UpdateProfileInformation({
     mustVerifyEmail,
@@ -17,37 +18,66 @@ export default function UpdateProfileInformation({
 }) {
     const user = usePage().props.auth.user;
 
-    const { data, setData, patch, errors, processing, recentlySuccessful } =
-        useForm({
-            name: user.name,
-            email: user.email,
-        });
+    const {
+        data,
+        setData,
+        patch,
+        post,
+        errors,
+        processing,
+        recentlySuccessful,
+    } = useForm({
+        name: user.name,
+        email: user.email,
+        avatar: user.avatar,
+        // _method: user ? "PUT" : "POST",
+    });
 
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
 
-        patch(route("profile.update"));
+        post(route("profile.update"), {
+            onSuccess: () => toast.success("Profile updated successfully"),
+            onError: () =>
+                toast.error("Something went wrong while updating profile"),
+        });
     };
 
     return (
         <section className={className}>
             <header>
-                <h2 className="text-lg font-medium text-gray-900">
-                    Profile Information
-                </h2>
+                <h2 className="text-lg font-medium ">Profile Information</h2>
 
-                <p className="mt-1 text-sm text-gray-600">
+                <p className="mt-1 text-sm ">
                     Update your account's profile information and email address.
                 </p>
             </header>
 
             <form onSubmit={submit} className="mt-6 space-y-6">
                 <div>
+                    <InputLabel htmlFor="avatar" value="Profile" />
+
+                    <TextInput
+                        type="file"
+                        id="avatar"
+                        className="block w-full mt-1"
+                        onChange={(e) =>
+                            setData(
+                                "avatar",
+                                e.target.files ? e.target.files[0] : null
+                            )
+                        }
+                        autoComplete="avatar"
+                    />
+
+                    <InputError className="mt-2" message={errors.avatar} />
+                </div>
+                <div>
                     <InputLabel htmlFor="name" value="Name" />
 
                     <TextInput
                         id="name"
-                        className="mt-1 block w-full"
+                        className="block w-full mt-1"
                         value={data.name}
                         onChange={(e) => setData("name", e.target.value)}
                         required
@@ -64,7 +94,7 @@ export default function UpdateProfileInformation({
                     <TextInput
                         id="email"
                         type="email"
-                        className="mt-1 block w-full"
+                        className="block w-full mt-1"
                         value={data.email}
                         onChange={(e) => setData("email", e.target.value)}
                         required
@@ -82,7 +112,7 @@ export default function UpdateProfileInformation({
                                 href={route("verification.send")}
                                 method="post"
                                 as="button"
-                                className="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                                className="text-sm underline rounded-md hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                             >
                                 Click here to re-send the verification email.
                             </Link>
@@ -107,7 +137,7 @@ export default function UpdateProfileInformation({
                         leave="transition ease-in-out"
                         leaveTo="opacity-0"
                     >
-                        <p className="text-sm text-gray-600">Saved.</p>
+                        <p className="text-sm ">Saved.</p>
                     </Transition>
                 </div>
             </form>

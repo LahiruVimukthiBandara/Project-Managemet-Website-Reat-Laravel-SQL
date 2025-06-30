@@ -6,6 +6,7 @@ import Pagination from "../Pagination";
 export default function UserTable({ users, user }: any) {
     const imageUrl = "http://127.0.0.1:8000/storage/";
     const admin = user.is_admin;
+    console.log(users);
 
     return (
         <div className="p-3 bg-gray-800 rounded-lg">

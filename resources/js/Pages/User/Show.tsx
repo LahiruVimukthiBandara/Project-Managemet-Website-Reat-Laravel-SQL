@@ -13,6 +13,7 @@ export default function Show({
     pending,
     in_progress,
 }: any) {
+    const imageUrl = "http://127.0.0.1:8000/storage/";
     const usr = user.data.data || user.data;
     const tsk = tasks.data.data || tasks.data;
     const pro = projects.data.data || projects.data;
@@ -41,13 +42,13 @@ export default function Show({
             <div className="flex flex-col gap-5">
                 <div className="flex flex-col gap-3">
                     <div className="flex w-full gap-3 p-10 bg-gray-800 rounded-lg">
-                        <div className="grid grid-cols-2 gap-5 w-full">
-                            <div className="flex w-full justify-center items-center">
+                        <div className="grid w-full grid-cols-2 gap-5">
+                            <div className="flex items-center justify-center w-full">
                                 <div className="avatar">
                                     <div className="w-64 rounded-full">
                                         <img
-                                            src="https://img.daisyui.com/images/profile/demo/yellingcat@192.webp"
-                                            alt=""
+                                            src={imageUrl + usr.avatar}
+                                            alt={usr.avatar}
                                         />
                                     </div>
                                 </div>
@@ -120,7 +121,7 @@ export default function Show({
                     </div>
                 </div>
                 <div className="flex w-full gap-3 p-3 bg-gray-800 rounded-lg">
-                    <div className="tabs tabs-box bg-gray-800 w-full">
+                    <div className="w-full bg-gray-800 tabs tabs-box">
                         <input
                             type="radio"
                             name="my_tabs_6"
@@ -128,8 +129,8 @@ export default function Show({
                             aria-label="All the Tasks "
                             defaultChecked
                         />
-                        <div className="tab-content pt-6">
-                            <div className="flex w-full justify-end gap-3 border-b border-gray-600 pb-3">
+                        <div className="pt-6 tab-content">
+                            <div className="flex justify-end w-full gap-3 pb-3 border-b border-gray-600">
                                 <div>
                                     <select
                                         name="status"
@@ -172,8 +173,8 @@ export default function Show({
                             className="tab"
                             aria-label="All the Projects"
                         />
-                        <div className="tab-content p-6">
-                            <div className="flex w-full justify-end gap-3 border-b border-gray-600 pb-3">
+                        <div className="p-6 tab-content">
+                            <div className="flex justify-end w-full gap-3 pb-3 border-b border-gray-600">
                                 <div>
                                     <select
                                         name="status"
