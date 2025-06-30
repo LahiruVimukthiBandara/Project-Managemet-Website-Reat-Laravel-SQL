@@ -60,8 +60,8 @@ In order to ensure that the Laravel community is welcoming to all, please review
 ## Security Vulnerabilities
 
 ![alt text](https://github.com/LahiruVimukthiBandara/Project-Managemet-Website-Reat-Laravel-SQL/blob/5c70392cdc51917c658a77040c138a5183c39dc8/Screenshot%20(416).png "optional title")
-![alt text](image-url "optional title")
-![alt text](image-url "optional title")
+![alt text](https://github.com/LahiruVimukthiBandara/Project-Managemet-Website-Reat-Laravel-SQL/blob/30fc42de13a230d596d5264e3b5d325039a7aa35/Screenshot%20(417).png "optional title")
+![alt text]([image-url](https://github.com/LahiruVimukthiBandara/Project-Managemet-Website-Reat-Laravel-SQL/blob/30fc42de13a230d596d5264e3b5d325039a7aa35/Screenshot%20(418).png) "optional title")
 
 
 If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
